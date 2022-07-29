@@ -1,4 +1,4 @@
-import { Component, createSignal, For, Switch, Match } from 'solid-js';
+import { Component, createSignal, For, Switch, Match, createMemo, createEffect } from 'solid-js';
 import { useParams } from "solid-app-router"
 import { MetricsObject, EventMetadata } from './MetricsObject'
 import SimpleRanking from './SimpleRanking'
@@ -28,21 +28,23 @@ const reportTypes = [
 ]
 
 const MetricsRoot: Component = () => {
-    const params = useParams()
-    const eventSlug = params.slug
-    const selectedEvent = eventManifest.find((e) => e.slug === eventSlug) as EventMetadata
+    const eventSlug = createMemo(() => useParams().slug)
+    const selectedEvent = createMemo(() => eventManifest.find((e) => e.slug === eventSlug()) as EventMetadata)
 
     const [selectedMetricsReport, setSelectedMetricsReport] = createSignal(ReportType.SIMPLE_RANKING)
     const [metrics, setMetrics] = createSignal<MetricsObject | null>(null)
 
-    if (selectedEvent !== null && selectedEvent !== undefined) {
-        const eventFile = "../events/" + selectedEvent.stats
-        if (eventFile in metricsFiles) {
-            metricsFiles[eventFile]().then((data) => {
-                setMetrics(data as MetricsObject)
-            })
+    createEffect(()=>{
+
+        if (selectedEvent() !== null && selectedEvent() !== undefined) {
+            const eventFile = "../events/" + selectedEvent().stats
+            if (eventFile in metricsFiles) {
+                metricsFiles[eventFile]().then((data) => {
+                    setMetrics(data as MetricsObject)
+                })
+            }
         }
-    }
+    })
 
     function handleDropDownChange(e: Event) {
         const value = +e.target.value
@@ -53,12 +55,13 @@ const MetricsRoot: Component = () => {
         }
     }
 
+
     return (
         <Container>
             <Switch fallback={<p>Please select an event from the sidebar.</p>}>
                 <Match when={selectedEvent !== null && selectedEvent !== undefined}>
                     <Container class="text-center">
-                        <h3>{selectedEvent.name} - {selectedEvent.date}</h3>
+                        <h3>{selectedEvent().name} - {selectedEvent().date}</h3>
                         <Form
                         >
                             <Form.Select
@@ -86,13 +89,13 @@ const MetricsRoot: Component = () => {
                                     <Match when={metrics() !== null && metrics() !== undefined}>
                                         <Switch>
                                             <Match when={selectedMetricsReport() === ReportType.SIMPLE_RANKING}>
-                                                <SimpleRanking event={selectedEvent} metrics={metrics()!} />
+                                                <SimpleRanking event={selectedEvent()} metrics={metrics()!} />
                                             </Match>
                                             <Match when={selectedMetricsReport() === ReportType.VICTORY_POINT_PLOT}>
-                                                <VictoryPointsReport event={selectedEvent} metrics={metrics()!} />
+                                                <VictoryPointsReport event={selectedEvent()} metrics={metrics()!} />
                                             </Match>
                                             <Match when={selectedMetricsReport() === ReportType.WIN_LOSS_METRICS}>
-                                                <WinLossMetrics event={selectedEvent} metrics={metrics()!} />
+                                                <WinLossMetrics event={selectedEvent()} metrics={metrics()!} />
                                             </Match>
                                         </Switch>
                                     </Match>
