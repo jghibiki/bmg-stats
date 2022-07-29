@@ -1,16 +1,17 @@
 import { Component, For, lazy } from 'solid-js';
 import { Container, Navbar, Offcanvas, Nav, NavDropdown } from 'solid-bootstrap'
-import { Router, Routes, Route, Link, useNavigate } from "solid-app-router"
+import { Router, Routes, Route, Link, hashIntegration } from "solid-app-router"
 import eventManifest from './EventManifest'
 const MetricsRoot = lazy(() => import('./metrics/MetricsRoot'))
+const About = lazy(() => import('./About'))
 
 
 const App: Component = () => {
   return (
-    <Router>
+    <Router source={hashIntegration()}>
       <Navbar expand={false} bg="secondary">
         <Container fluid>
-          <Navbar.Brand href="#">Batman Miniature Game Stats</Navbar.Brand>
+          <Navbar.Brand as={Link} href="/home" >Batman Miniature Game Stats</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Offcanvas
             id="offcanvasnavbar"
@@ -35,6 +36,8 @@ const App: Component = () => {
       </Navbar>
       <Container fluid>
         <Routes>
+          <Route path="/" component={About} />
+          <Route path="/home" component={About} />
           <Route path="/tournament/:slug" component={MetricsRoot} />
         </Routes>
       </Container>
