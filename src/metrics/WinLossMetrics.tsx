@@ -196,7 +196,8 @@ const VictoryPointsReport: Component<{ event: EventMetadata, metrics: MetricsObj
             <h3>Average Crew W/D/L Stats</h3>
             <SolidApexCharts width="500" type="bar" options={adjustedCrewOptions()} series={adjustedCrewSeries()} />
 
-            <h3>TP to VP ratio</h3>
+            <h3>TPs per VP ratio</h3>
+            <p>For one VP a player earns roughly X TP's</p>
             <SolidApexCharts width="500" type="bar" options={tpVpRatioOptions()} series={tpVpRatioSeries()} />
         </>
     );
