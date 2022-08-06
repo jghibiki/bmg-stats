@@ -34,7 +34,7 @@ const MetricsRoot: Component = () => {
     const [selectedMetricsReport, setSelectedMetricsReport] = createSignal(ReportType.SIMPLE_RANKING)
     const [metrics, setMetrics] = createSignal<MetricsObject | null>(null)
 
-    createEffect(()=>{
+    createEffect(() => {
 
         if (selectedEvent() !== null && selectedEvent() !== undefined) {
             const eventFile = "../events/" + selectedEvent().stats
@@ -57,10 +57,10 @@ const MetricsRoot: Component = () => {
 
 
     return (
-        <Container>
+        <Container fluid>
             <Switch fallback={<p>Please select an event from the sidebar.</p>}>
                 <Match when={selectedEvent !== null && selectedEvent !== undefined}>
-                    <Container class="text-center">
+                    <Container class="text-center" fluid>
                         <h3>{selectedEvent().name} - {selectedEvent().date}</h3>
                         <Form
                         >
@@ -81,7 +81,7 @@ const MetricsRoot: Component = () => {
                             </Form.Select>
                         </Form>
                     </Container>
-                    <Container>
+                    <Container fluid>
                         <Row>
                             <Col xs={2}></Col>
                             <Col>

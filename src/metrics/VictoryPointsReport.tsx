@@ -22,6 +22,7 @@ const VictoryPointsReport: Component<{ event: EventMetadata, metrics: MetricsObj
         var crewAggregations = new Map<string, number>()
         var crewPlayerCounts = new Map<string, Array<string>>()
         var adjustedCrewAggregations = new Map<string, number>()
+        var roundTracker = new Array<number>()
 
 
         for (var metric of statsList()) {
@@ -46,15 +47,20 @@ const VictoryPointsReport: Component<{ event: EventMetadata, metrics: MetricsObj
                     crewList.push(player)
                 }
             }
+
+            if (!roundTracker.includes(metric.round)) {
+                roundTracker.push(metric.round)
+            }
         }
 
         for (var el of crewAggregations) {
             const crew = el[0]
             const stats = el[1]
             const numPlayers = crewPlayerCounts.get(crew)!.length
+            const numRounds = roundTracker.length
 
             adjustedCrewAggregations.set(
-                crew, +(stats / numPlayers).toFixed(2)
+                crew, +(stats / numPlayers / numRounds).toFixed(2)
             )
 
         }
@@ -110,7 +116,7 @@ const VictoryPointsReport: Component<{ event: EventMetadata, metrics: MetricsObj
 
     return (
         <>
-            <h3>Player Victory Points</h3>
+            <h3>Tornament Victory Points for each Player</h3>
             <SolidApexCharts width="500" type="bar" options={playerOptions()} series={playerSeries()} />
 
             <h3>Total Crew Victory Points</h3>
@@ -118,7 +124,7 @@ const VictoryPointsReport: Component<{ event: EventMetadata, metrics: MetricsObj
             <SolidApexCharts width="500" type="bar" options={crewOptions()} series={crewSeries()} />
 
             <h3>Average Victory Points</h3>
-            <h4> Average victory points for each crew</h4>
+            <h4> Average tournament round VPs for each crew</h4>
             <SolidApexCharts width="500" type="bar" options={adjustedCrewOptions()} series={adjustedCrewSeries()} />
         </>
     );
