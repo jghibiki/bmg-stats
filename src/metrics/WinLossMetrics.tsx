@@ -182,7 +182,7 @@ const VictoryPointsReport: Component<{ event: EventMetadata, metrics: MetricsObj
         })
 
         setTpVpRatioSeries([{
-            name: 'One VP is with X TP',
+            name: 'One VP is worth X TP',
             data: Array.from(tpToVpAggregations.values())
         }])
     })
