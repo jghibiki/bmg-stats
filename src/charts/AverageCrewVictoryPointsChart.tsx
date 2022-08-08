@@ -68,8 +68,12 @@ const AverageCrewVictoryPointsChart: Component<{
             },
             colors: ["#ab8412", "#1A41AB", "#465ad8", "#D8C446"],
             xaxis: {
-                categories: Array.from(adjustedCrewAggregations.keys())
+                categories: Array.from(adjustedCrewAggregations.keys()),
+                decimalsInFloat: 2
             },
+            yaxis: {
+                decimalsInFloat: 2
+            }
         })
 
         setChartSeries([{

@@ -50,7 +50,7 @@ const App: Component = () => {
 
   return (
     <Router source={hashIntegration()}>
-      <Navbar expand={false} style={{ "background": "var(--bs-blue)" }} >
+      <Navbar expand={false} style={{ "background": "var(--bs-primary)" }} >
         <Container fluid>
           <Navbar.Brand as={Link} href="/home" class="link-light" style={{ "font-weight": "bold" }} >Batman Miniature Game Stats</Navbar.Brand>
           <Navbar.Toggle />

@@ -58,8 +58,12 @@ const CrewWdlChart: Component<{ metrics: Array<MatchResult> }> = (props) => {
             },
             colors: ["#ab8412", "#1A41AB", "#465ad8", "#D8C446"],
             xaxis: {
-                categories: Array.from(sorted.map(e => e[0]))
+                categories: Array.from(sorted.map(e => e[0])),
+                decimalsInFloat: 2
             },
+            yaxis: {
+                decimalsInFloat: 2
+            }
         })
 
         setChartSeries([{

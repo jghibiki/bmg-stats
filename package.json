@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "apexcharts": "^3.35.4",
+    "bootstrap": "^5.2.0",
+    "sass": "^1.54.3",
     "solid-apexcharts": "^0.1.6",
     "solid-app-router": "^0.4.1",
     "solid-bootstrap": "^1.0.8",

@@ -37,8 +37,12 @@ const CrewVictoryPointsChart: Component<{
             },
             colors: ["#ab8412", "#1A41AB", "#465ad8", "#D8C446"],
             xaxis: {
-                categories: Array.from(crewAggregations.keys())
+                categories: Array.from(crewAggregations.keys()),
+                decimalsInFloat: 2
             },
+            yaxis:{
+                decimalsInFloat: 2
+            }
         })
 
         setChartSeries([{
