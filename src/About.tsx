@@ -47,9 +47,6 @@ const About: Component = () => {
                                         TP to casualty points report
                                     </li>
                                     <li>
-                                        Event placings table
-                                    </li>
-                                    <li>
                                         Event overview metrics: number of players, players per crew, event counts, deployment counts
                                     </li>
                                     <li>
@@ -63,10 +60,6 @@ const About: Component = () => {
                                     </li>
                                     <li>
                                         Crew List metrics
-                                    </li>
-                                    <li>
-                                        Cross-event metrics. e.g. Cross event metrics for the past 3-4 tornaments, or tornaments 
-                                        in the past 6 months (would require a few more events to provide stats).
                                     </li>
                                 </ul>
 

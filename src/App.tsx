@@ -2,7 +2,8 @@ import { Component, For, lazy } from 'solid-js';
 import { Container, Navbar, Offcanvas, Nav, NavDropdown } from 'solid-bootstrap'
 import { Router, Routes, Route, Link, hashIntegration } from "solid-app-router"
 import eventManifest from './EventManifest'
-const MetricsRoot = lazy(() => import('./metrics/MetricsRoot'))
+const SingleEventMetricsRoot = lazy(() => import('./metrics/SingleEventMetricsRoot'))
+const CrossEventMetricsRoot = lazy(() => import('./metrics/CrossEventMetricsRoot'))
 const About = lazy(() => import('./About'))
 
 var groupedEvents = new Map<string, Map<string, Array<Object>>>()
@@ -62,6 +63,12 @@ const App: Component = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav >
+                <Nav.Link as={Link} href="/season-stats?format=renegade_350">
+                  Renegade 350 Season Stats
+                </Nav.Link>
+                <Nav.Link as={Link} href="/season-stats">
+                  Cross-Event Metrics
+                </Nav.Link>
                 <NavDropdown title="Tournaments" id="offcanvasNavbarDropdown">
                   <div style={{ "padding": "5px" }}>
                     <For each={Array.from(groupedEvents.keys())}>{(formatName, i) =>
@@ -85,7 +92,8 @@ const App: Component = () => {
         <Routes>
           <Route path="/" component={About} />
           <Route path="/home" component={About} />
-          <Route path="/tournament/:slug" component={MetricsRoot} />
+          <Route path="/tournament/:slug" component={SingleEventMetricsRoot} />
+          <Route path="/season-stats" component={CrossEventMetricsRoot} />
         </Routes>
       </Container>
     </Router >

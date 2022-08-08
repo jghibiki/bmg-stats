@@ -9,6 +9,7 @@ export interface MatchResult {
     vp: number
     tp: number
     casualty_points: number
+    tournament_slug: string | null
 }
 
 export interface MetricsObject {

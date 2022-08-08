@@ -1,9 +1,9 @@
 import { Component, createSignal, For, Switch, Match, createMemo, createEffect } from 'solid-js';
 import { useParams } from "solid-app-router"
 import { MetricsObject, EventMetadata } from './MetricsObject'
-import SimpleRanking from './SimpleRanking'
-import VictoryPointsReport from './VictoryPointsReport'
-import WinLossMetrics from './WinLossMetrics'
+import SimpleRanking from './reports/SimpleRanking'
+import VictoryPointsReport from './reports/VictoryPointsReport'
+import WinLossMetrics from './reports/WinLossMetrics'
 import eventManifest from '../EventManifest';
 const metricsFiles = import.meta.glob('../events/*.json')
 import { Form, Container, Row, Col } from "solid-bootstrap"
@@ -27,7 +27,7 @@ const reportTypes = [
     { name: "Win Loss Metrics", type: ReportType.WIN_LOSS_METRICS }
 ]
 
-const MetricsRoot: Component = () => {
+const SingleEventMetricsRoot: Component = () => {
     const eventSlug = createMemo(() => useParams().slug)
     const selectedEvent = createMemo(() => eventManifest.find((e) => e.slug === eventSlug()) as EventMetadata)
 
@@ -89,7 +89,11 @@ const MetricsRoot: Component = () => {
                                     <Match when={metrics() !== null && metrics() !== undefined}>
                                         <Switch>
                                             <Match when={selectedMetricsReport() === ReportType.SIMPLE_RANKING}>
-                                                <SimpleRanking event={selectedEvent()} metrics={metrics()!} />
+                                                <SimpleRanking
+                                                    event={selectedEvent()}
+                                                    metrics={metrics()!}
+                                                    excludeMaskedPlayers={false}
+                                                />
                                             </Match>
                                             <Match when={selectedMetricsReport() === ReportType.VICTORY_POINT_PLOT}>
                                                 <VictoryPointsReport event={selectedEvent()} metrics={metrics()!} />
@@ -110,4 +114,4 @@ const MetricsRoot: Component = () => {
     );
 };
 
-export default MetricsRoot;
+export default SingleEventMetricsRoot;
