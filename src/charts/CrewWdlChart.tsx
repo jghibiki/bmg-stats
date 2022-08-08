@@ -51,6 +51,11 @@ const CrewWdlChart: Component<{ metrics: Array<MatchResult> }> = (props) => {
                     horizontal: true
                 }
             },
+            theme: {
+                "mode": "dark",
+                //"palette": "palette8"
+            },
+            colors: ["#ab8412", "#1A41AB", "#465ad8", "#D8C446"],
             xaxis: {
                 categories: Array.from(crewAggregations.keys())
             },

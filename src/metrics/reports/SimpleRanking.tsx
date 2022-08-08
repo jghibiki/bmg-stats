@@ -2,7 +2,7 @@ import { Component, For, createMemo, createSignal, createEffect, Show, } from 's
 import { MetricsObject, MatchResult, EventMetadata } from '../MetricsObject';
 import { NonNullSortDirection, SimpleTable, SortDirection, } from "solid-simple-table"
 import { Container, Row, Col } from "solid-bootstrap"
-import 'solid-simple-table/dist/SimpleTable.css'
+import CustomTable from '../../charts/CustomTable';
 
 const SimpleRanking: Component<{
     metrics: MetricsObject,
@@ -75,7 +75,7 @@ const SimpleRanking: Component<{
                             <Row>
                                 <Col fluid></Col>
                                 <Col xs={8}>
-                                    <SimpleTable rows={ranking()} />
+                                    <CustomTable contents={ranking()} />
                                 </Col>
                                 <Col fluid></Col>
                             </Row>
@@ -88,7 +88,7 @@ const SimpleRanking: Component<{
                 >
                     <Col xs={4}>
                         <h4>Round Results</h4>
-                        <SimpleTable rows={statsList()} />
+                        <CustomTable contents={statsList()} />
                     </Col>
                 </Show>
                 <Show when={props.excludeMaskedPlayers}>

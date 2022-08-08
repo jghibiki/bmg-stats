@@ -38,7 +38,10 @@ const TornamentVictoryPointsChart: Component<{
                     horizontal: true
                 }
             },
-
+            theme: {
+                "mode": "dark",
+            },
+            colors: ["#ab8412", "#1A41AB", "#465ad8", "#D8C446"],
             xaxis: {
                 categories: Array.from(playerAggregations.keys())
             },
