@@ -55,7 +55,6 @@ const TornamentVictoryPointsChart: Component<{
     return (
         <>
             <h3>Tornament Victory Points for each Player</h3>
-            <p>Average number of VP earned by a crew when they won, drew, or lost.</p>
             <Show when={props.excludeMaskedPlayers}>
                 <p>*Only displaying unmasked players.</p>
             </Show>
