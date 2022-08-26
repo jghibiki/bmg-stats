@@ -2,6 +2,7 @@ import { Component, For, lazy } from 'solid-js';
 import { Container, Navbar, Offcanvas, Nav, NavDropdown, Button } from 'solid-bootstrap'
 import { Router, Routes, Route, Link, hashIntegration } from "solid-app-router"
 import eventManifest from './EventManifest'
+import SeasonalCriminalTool from './tools/SeasonalCriminalTool';
 const SingleEventMetricsRoot = lazy(() => import('./metrics/SingleEventMetricsRoot'))
 const CrossEventMetricsRoot = lazy(() => import('./metrics/CrossEventMetricsRoot'))
 const About = lazy(() => import('./About'))
@@ -83,6 +84,11 @@ const App: Component = () => {
                     }</For>
                   </div>
                 </NavDropdown>
+                <NavDropdown title="Tools" id="offcanvasNavbarDropdown">
+                  <NavDropdown.Item as={Link} href="/tools/seasonal-criminal" style={{ "white-space": "normal" }} >
+                    Seasonal Criminal Tool
+                  </NavDropdown.Item>
+                </NavDropdown>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
@@ -94,6 +100,7 @@ const App: Component = () => {
           <Route path="/home" component={About} />
           <Route path="/tournament/:slug" component={SingleEventMetricsRoot} />
           <Route path="/season-stats" component={CrossEventMetricsRoot} />
+          <Route path="/tools/seasonal-criminal" component={SeasonalCriminalTool} />
         </Routes>
       </Container>
     </Router >
