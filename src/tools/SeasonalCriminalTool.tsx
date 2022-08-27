@@ -15,7 +15,10 @@ const SeasonalCriminalTool: Component = () => {
     }
 
     const modulus = () => {
-        let total = playerVps() + opponentVps()
+        let total = playerVps() + opponentVps() - 12
+        if (total < 0) {
+            return "No bonus"
+        }
         let loops = Math.floor(total / 12)
         let position = loops % 4
 
@@ -36,10 +39,15 @@ const SeasonalCriminalTool: Component = () => {
 
 
     return (
-        <Container style={{"margin-top": "20px"}}>
+        <Container style={{ "margin-top": "20px" }}>
+            <Row style={{ "margin-bottom": " 20px" }}>
+                <Col className="text-center">
+                    <h2>Seasonal Criminal</h2>
+                </Col>
+            </Row>
             <Row>
                 <Col>
-                    <Form>
+                    <Form onSubmit={(e) => e.preventDefault()}>
                         <Form.Label>Player Victory Points</Form.Label>
                         <Form.Control type="number" onChange={playerVpsChange} value={playerVps()} min={0} />
                     </Form>
