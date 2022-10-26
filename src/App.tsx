@@ -3,6 +3,7 @@ import { Container, Navbar, Offcanvas, Nav, NavDropdown, Button } from 'solid-bo
 import { Router, Routes, Route, Link, hashIntegration } from "solid-app-router"
 import eventManifest from './EventManifest'
 import SeasonalCriminalTool from './tools/SeasonalCriminalTool';
+import CompendiumSearch from './tools/CompendiumSearch/CompendiumSearch';
 const SingleEventMetricsRoot = lazy(() => import('./metrics/SingleEventMetricsRoot'))
 const CrossEventMetricsRoot = lazy(() => import('./metrics/CrossEventMetricsRoot'))
 const About = lazy(() => import('./About'))
@@ -88,6 +89,9 @@ const App: Component = () => {
                   <NavDropdown.Item as={Link} href="/tools/seasonal-criminal" style={{ "white-space": "normal" }} >
                     Seasonal Criminal Tool
                   </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} href="/tools/compendium" style={{ "white-space": "normal" }} >
+                    Compendium Search
+                  </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
             </Offcanvas.Body>
@@ -101,6 +105,7 @@ const App: Component = () => {
           <Route path="/tournament/:slug" component={SingleEventMetricsRoot} />
           <Route path="/season-stats" component={CrossEventMetricsRoot} />
           <Route path="/tools/seasonal-criminal" component={SeasonalCriminalTool} />
+          <Route path="/tools/compendium" component={CompendiumSearch} />
         </Routes>
       </Container>
     </Router >
