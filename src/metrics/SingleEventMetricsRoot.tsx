@@ -6,6 +6,7 @@ import VictoryPointsReport from './reports/VictoryPointsReport'
 import WinLossMetrics from './reports/WinLossMetrics'
 import eventManifest from '../EventManifest';
 import { Form, Container, Row, Col } from "solid-bootstrap"
+const metricsFiles = import.meta.glob('../events/*.json')
 
 enum ReportType {
     SIMPLE_RANKING,
@@ -27,7 +28,6 @@ const reportTypes = [
 ]
 
 const SingleEventMetricsRoot: Component = () => {
-    const metricsFiles = import.meta.glob('../events/*.json')
     const eventSlug = createMemo(() => useParams().slug)
     const selectedEvent = createMemo(() => eventManifest.find((e) => e.slug === eventSlug()) as EventMetadata)
 

@@ -4,11 +4,11 @@ import { Form, Container, Row, Col, Card, } from "solid-bootstrap"
 import { useSearchParams } from "solid-app-router"
 import { Equipment, isEquipment, isTrait, Trait } from '../../ApiEntities';
 import fuzzy from 'fuzzy';
+import data from "./data.json"
 
 
 
 const CompendiumSearch: Component = () => {
-    const data = import("./data.json")
     const equipment = data.equipment.map((el: any) => {
         el.type = "equipment";
         return el as Equipment;
