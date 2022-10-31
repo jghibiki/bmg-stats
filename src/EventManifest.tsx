@@ -42,5 +42,19 @@ export default [
             "funding": 1500,
         },
         "cross_event": true,
+    },
+    {
+        "event_series": "The Long Halloween",
+        "name": "The Long Halloween",
+        "date": "2022-10-29",
+        "stats": "Long Halloween 2022.json",
+        "slug": "2022_long_halloween",
+        "format": {
+            "name": "Batmatch 350",
+            "slug": "batmatch_350",
+            "reputation": 350,
+            "funding": 1500,
+        },
+        "cross_event": true,
     }
 ]

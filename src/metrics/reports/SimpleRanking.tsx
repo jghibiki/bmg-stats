@@ -25,15 +25,17 @@ const SimpleRanking: Component<{
         let scores = players.map((e) => {
             let tp = 0
             let vp = 0
+            let cp = 0
             for (var el of statsList()) {
                 if (el.player !== e) continue
                 tp += el.tp
                 vp += el.vp
+                cp += el.casualty_points
             }
 
-            return { tp: tp, vp: vp, player: e }
+            return { tp: tp, vp: vp, cp: cp, player: e }
         })
-        let sortedScores = scores.sort((a, b) => b.tp - a.tp || b.vp - a.vp)
+        let sortedScores = scores.sort((a, b) => b.tp - a.tp || b.vp - a.vp || b.cp - a.cp)
 
         let r = new Array<Object>()
 
