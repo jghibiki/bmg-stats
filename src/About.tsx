@@ -26,7 +26,7 @@ const About: Component = () => {
 
                                 <h5>Tournament Metrics Source:</h5>
                                 <p>
-                                    All tournament stats are source from Best Coast Pairings currently.
+                                    All tournament stats are source from Best Coast Pairings or manually entered.
                                     If you'd like to contribute tournament results contact me and we can discuss how to provide the results.
                                 </p>
 
