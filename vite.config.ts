@@ -9,5 +9,5 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-  base: "/bmg-stats/"
+  //base: "/bmg-stats/"
 });
