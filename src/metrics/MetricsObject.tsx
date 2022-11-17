@@ -20,5 +20,15 @@ export interface EventMetadata {
     name: string
     date: string
     stats: string
-    slug: string
+    slug: string,
+    supplimentary_data: boolean
+}
+
+export interface BossMetadata {
+    boss: string,
+    crew: string
+}
+
+export interface SupplementaryEventData {
+    bosses: BossMetadata[] | null
 }

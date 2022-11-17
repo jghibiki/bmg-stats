@@ -1,0 +1,16 @@
+{
+    "bosses": [
+        {
+            "boss": "black canary",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "black mask",
+            "crew": "organized crime"
+        },
+        {
+            "boss": "poison ivy",
+            "crew": "birds of prey"
+        }
+    ]
+}

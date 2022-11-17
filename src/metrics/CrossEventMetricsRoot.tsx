@@ -1,11 +1,12 @@
 import { Component, createSignal, For, Switch, Match, createMemo, createEffect, Show } from 'solid-js';
-import { MetricsObject, EventMetadata, MatchResult } from './MetricsObject'
+import { MetricsObject, EventMetadata, MatchResult, SupplementaryEventData } from './MetricsObject'
 import { useSearchParams, useIsRouting } from "solid-app-router"
 import SimpleRanking from './reports/SimpleRanking'
 import VictoryPointsReport from './reports/VictoryPointsReport'
 import WinLossMetrics from './reports/WinLossMetrics'
 import eventManifest from '../EventManifest';
 const metricsFiles = import.meta.glob('../events/*.json')
+const supplimentaryMetricsFiles = import.meta.glob('../supplimentary_event_data/*.json')
 import { Form, Container, Row, Col, Accordion, Spinner } from "solid-bootstrap"
 
 enum ReportType {
@@ -34,14 +35,23 @@ const CrossEventMetricsRoot: Component = () => {
     const currentSlug = createMemo(() => searchParams.slugs || "")
     const [updatedSlug, setUpdatedSlug] = createSignal<string | null>(null)
     const [metricsToLoad, setMetricsToLoad] = createSignal(0)
+
+
+    // Load metrics signals
     const [loadedMetrics, setLoadedMetrics] = createSignal(0)
     const [loadMetrics, setLoadMetrics] = createSignal(false)
+    const [metricResults, setMetrics] = createSignal(new Array<MatchResult>())
+
+    // Load supplimentary metrics Signals
+    const [loadedSupMetrics, setLoadedSubMetrics] = createSignal(0)
+    const [loadSupMetrics, setLoadSupMetrics] = createSignal(false)
+    const [supMetricResults, setSupMetrics] = createSignal(new Array<SupplementaryEventData>())
+
     const selectedSlugs = createMemo(() => {
         if (currentSlug() === "") return []
         return currentSlug()?.split("|") || []
     })
 
-    const [metricResults, setMetrics] = createSignal(new Array<MatchResult>())
     const metrics = () => ({ stats: metricResults() } as MetricsObject)
     const [loadingMetrics, setLoadingMetrics] = createSignal(false)
 
@@ -83,22 +93,36 @@ const CrossEventMetricsRoot: Component = () => {
     createEffect(() => {
         if (loadMetrics()) {
             if (!loadingMetrics()) {
+                // indcate the metrics are not loaded
                 setLoadMetrics(false)
+                // get the eent slug
                 let _events = getSlugEvents()
+                // evaluate if there are any metrics to load.
                 setLoadingMetrics(_events.length > 0)
+                // set metrics to load counter
                 setMetricsToLoad(_events.length)
+                // set count of loaded metrics to 0
                 setLoadedMetrics(0)
+                // clearm metrics array
                 setMetrics([])
+
+                // for each event, load the associated metrics
                 _events.map((e) => {
                     const eventFile = "../events/" + e.stats
+                    // check if path is in array of files
                     if (eventFile in metricsFiles) {
+                        // load file, returning a promise
                         metricsFiles[eventFile]().then((data) => {
                             console.log(`loaded file ${eventFile}`)
+                            //increment the loaded metrics counter
                             setLoadedMetrics(1 + loadedMetrics())
+                            // map the json data to Metrics Object
                             let d = (data as MetricsObject).stats.map(data => {
                                 return { ...data, tornament_slug: e.slug }
                             })
+                            //record the new metric
                             addMetric(d)
+                            // determine if we have finished loading, if so, clear loading indicator after 200ms
                             if (metricsToLoad() === loadedMetrics()) {
                                 setTimeout(() => {
                                     setLoadingMetrics(false)
