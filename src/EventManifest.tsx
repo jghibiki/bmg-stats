@@ -61,7 +61,6 @@ export default [
         "cross_event": true,
         "supplimentary_data": false,
     },
-    /*
     {
         "event_series": "Renegade",
         "name": "Renedade Open - The Riddlers Renegade Rampage I",
@@ -77,8 +76,6 @@ export default [
         "cross_event": true,
         "supplimentary_data": true,
     },
-    */
-    /*
     {
         "event_series": "Renegade",
         "name": "Renedade Open - Knightfall 5",
@@ -94,7 +91,6 @@ export default [
         "cross_event": true,
         "supplimentary_data": true,
     },
-    */
     /*
     {
         "event_series": "Renegade",

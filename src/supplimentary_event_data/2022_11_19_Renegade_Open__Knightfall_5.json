@@ -1,0 +1,120 @@
+{
+    "bosses": [
+        {
+            "boss": "Harley Quinn (Roller Derby)",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Poison Ivy",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Black Canary",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Poison Ivy",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Batman (Classic)",
+            "crew": "Bat-Fam"
+        },
+        {
+            "boss": "Nightwing",
+            "crew": "Bat-Fam"
+        },
+        {
+            "boss": "Bane (Dark Knight Rises)",
+            "crew": "Soldiers of Fortune"
+        },
+        {
+            "boss": "Bane (Dark Knight Rises)",
+            "crew": "Soldiers of Fortune"
+        },
+        {
+            "boss": "The Riddler (The Batman)",
+            "crew": "Riddler"
+        },
+        {
+            "boss": "The Penguin (Arkham Knight)",
+            "crew": "Penguin"
+        },
+        {
+            "boss": "Emperor Penguin",
+            "crew": "Penguin"
+        },
+        {
+            "boss": "Harley Quinn (Roller Derby)",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Rick Flag",
+            "crew": "Suicide Squad"
+        },
+        {
+            "boss": "Bloodsport",
+            "crew": "Suicide Squad"
+        },
+        {
+            "boss": "Batman",
+            "crew": "Batman"
+        },
+        {
+            "boss": "Poison Ivy",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Black Canary",
+            "crew": "Birds of Prey"
+        },
+        {
+            "boss": "Mr. Freeze",
+            "crew": "Mr. Freeze"
+        },
+        {
+            "boss": "Mr. Freeze",
+            "crew": "Mr. Freeze"
+        },
+        {
+            "boss": "The Batman Who Laughs",
+            "crew": "The Batman Who Laughs"
+        },
+        {
+            "boss": "The Batman Who Laughs",
+            "crew": "The Batman Who Laughs"
+        },
+        {
+            "boss": "The Penguin (Arkham Knight)",
+            "crew": "The Penguin"
+        },
+        {
+            "boss": "The Penguin (Arkham Knight)",
+            "crew": "The Penguin"
+        },
+        {
+            "boss": "The Batman Who Laughs",
+            "crew": "The Batman Who Laughs"
+        },
+        {
+            "boss": "Joker (Dark Knight Rises)",
+            "crew": "Joker"
+        },
+        {
+            "boss": "Batman (The Batman)",
+            "crew": "Batman"
+        },
+        {
+            "boss": "Carmine Falcone (The Batman)",
+            "crew": "Organized Crime"
+        },
+        {
+            "boss": "The Penguin (The Batman)",
+            "crew": "Organized Crime"
+        },
+        {
+            "boss": "Batman (Death Metal)",
+            "crew": "Batman"
+        }
+    ]
+}
